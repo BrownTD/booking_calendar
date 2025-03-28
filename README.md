@@ -8,8 +8,118 @@ booking-calendar/
 ├── style.css          # CSS file for styling
 ├── README.md          # Project description, usage, and integration instructions
 └── LICENSE            # Restrictive license (nobody can use or copy)
+```
+
+# Desired User Flow
+```
+                 +-----------------+
+                 |   Start Booking |
+                 +--------+--------+
+                          |
+                          v
+                 +-----------------+
+                 |  Pick a Date    |
+                 +--------+--------+
+                          |
+                          v
+         +-------------------------------+
+         |      Fill Out Form:           |
+         |  - First Name                 |
+         |  - Last Name                  |
+         |  - Phone Number               |
+         |  - # of Guests                |
+         |  - Canvas Size (M/L)          |
+         +---------------+---------------+
+                         |
+                         v
+         +---------------------------------------+
+         | Decision: Are All Fields Completed    |
+ ----->  |         AND Guest Count >= 20?        |
+ |       +---------------+---------------+-------+
+ |                        |               |
+ |                     NO |               | YES
+ |                        v               v
+ |                +----------------+  +----------------------------+
+ |                |  Show Error:   |  | Confirm All Selections     |
+ |                |"Incomplete     |  +-------------+--------------+
+ |                |  Guest < 20"   |                |
+ |                +----------------+                v
+ |                        |                 +----------------------+
+ |                        |                 | Choose Painting via  |
+ |                        |                 | Wix Slider Gallery   |
+ |                        |                 | API                  |
+ |                        |                 +-----------+----------+
+ |                        |                             |
+ ------------------------+                              |
+                                                        |
+                                                        v
+                                         +----------------------+
+                                         | Checkout with Stripe |
+                                         +-----------+----------+
+                                                     |
+                                                     v
+                                         +----------------------+
+                                         | Decision: Payment    |
+                                         | Successful?          |
+                                         +------+-------+-------+
+                                                | NO           | YES
+                                                v              v
+                                         +-----------------+  +-----------------------+
+                                         | Show Payment    |  | Send Confirmation and |
+                                         | Error & Retry   |  | Receipt to User Email |
+                                         +-----------------+  +-----------+-----------+
+                                                                      |
+                                                                      v
+                                                           +------------------+
+                                                           | Send Data to Wix |
+                                                           +--------+---------+
+                                                                    |
+                                                                    v
+                                                           +------------------+
+                                                           |     Complete     |
+                                                           +------------------+
 
 ```
+
+## User Flow Description (READ)
+1. Start Booking:
+   - The user initiates the booking process.
+2. Pick a Date:
+   - The user selects a desired date from the calendar.
+3.	Form Slides Up:
+   - After a date is chosen, the booking form slides up into view to indicate that further input is required.
+4.	Fill Out Form:
+   - The user completes the form by entering:
+	   - First Name
+	   - Last Name
+	   - Phone Number
+	   - Number of Guests
+	   - Canvas Size (M/L)
+5.	Retrieve Data from Wix API:
+   - Data for pricing and available options (e.g., canvas sizes and corresponding prices) is fetched from the Wix API, ensuring that the latest options and pricing are displayed to the user.
+6.	Validate Form and Guest Count:
+   - A decision point verifies that all required fields are filled out and that the guest count is at least 20.
+	- If validation fails:
+      - An error (“Incomplete or Guest < 20”) is shown, and the process returns to the form for correction.
+	   - If validation passes: The process continues.
+7.	Confirm Selections:
+   - The user reviews and confirms all their selections, including the chosen date, form entries, and available options (with pricing data from the Wix API).
+8.	Calculate Price:
+   - The system calculates the total price by multiplying the number of guests by the canvas price (which is determined by the selected canvas size).
+   - This calculation is based on the dynamic pricing data retrieved from the Wix API.
+9.	Choose Painting:
+   - The user selects a painting via the Wix Slider Gallery API.
+10. Checkout with Stripe:
+   - The user proceeds to the checkout process, where the calculated total price is charged through Stripe.
+11. Payment Validation:
+   - A decision point checks if the payment was successful:
+	- If unsuccessful: A payment error is displayed, allowing the user to retry the payment.
+	- If successful: The process moves forward.
+12. Send Confirmation and Receipt:
+   - Once payment is confirmed, a confirmation and receipt are sent to the customer’s email.
+13. Send Data to Wix:
+   - Booking details, including user data and pricing information, are transmitted to Wix for record keeping
+     
 # Features
 
 - **Responsive Design:** Optimized for desktop and mobile devices.
