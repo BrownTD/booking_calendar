@@ -1,6 +1,15 @@
 # Booking Calendar
 This repository holds an event-based booking calendar built solely with HTML and CSS for seamless integration into Veto websites. It features custom date/time selection, product/service options, event scheduling, and guest management in a responsive design. All code is strictly protected; unauthorized use, copying, or distribution is prohibited.
 
+## Table of Contents
+
+- [Project Structure](#project-structure)
+- [Desired User Flow](#desired-user-flow)
+- [User Flow Description (READ)](#user-flow-description-read)
+- [Features](#features)
+- [Getting Started](#getting-started)
+- [Next Steps](#next-steps)
+
 # Project Structure
 ```
 booking-calendar/
@@ -81,7 +90,7 @@ booking-calendar/
 
 ```
 
-## User Flow Description (READ)
+# User Flow Description (READ)
 1. Start Booking:
    - The user initiates the booking process.
 2. Pick a Date:
