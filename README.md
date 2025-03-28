@@ -1,9 +1,9 @@
 # Booking Calendar
 
+This repository holds an event-based booking calendar built solely with HTML and CSS for seamless integration into Veto websites. It features custom date/time selection, product/service options, event scheduling, and guest management in a responsive design. All code is strictly protected; unauthorized use, copying, or distribution is prohibited.
+
+
 <img src="docs/calendar_ui.png" alt="Calendar UI" width="400" />
-
-
-- This repository holds an event-based booking calendar built solely with HTML and CSS for seamless integration into Veto websites. It features custom date/time selection, product/service options, event scheduling, and guest management in a responsive design. All code is strictly protected; unauthorized use, copying, or distribution is prohibited.
 
 ## Table of Contents
 
